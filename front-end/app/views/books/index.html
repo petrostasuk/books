@@ -1,0 +1,86 @@
+<div>
+  <h1 class="pull-left">Books</h1>
+  <div class="pull-right col-xs-4 search-box">
+    <form ng-submit="loadBooks()" novalidate name="searchForm" class="">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input class="form-control" type="search" ng-model="query.search">
+        <span class="input-group-btn">
+          <button ng-click="clearSearch()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+      </span>
+      </div>
+    </form>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          <a href="" ng-click="setOrder('bookId')">
+            <i class="glyphicon" ng-class="{'glyphicon-arrow-up': query.sort == '-bookId', 'glyphicon-arrow-down': query.sort == 'bookId'}"></i>#
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="setOrder('author')">
+            <i class="glyphicon" ng-class="{'glyphicon-arrow-up': query.sort == '-author', 'glyphicon-arrow-down': query.sort == 'author'}"></i>Author
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="setOrder('title')">
+            <i class="glyphicon" ng-class="{'glyphicon-arrow-up': query.sort == '-title', 'glyphicon-arrow-down': query.sort == 'title'}"></i>Title
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="setOrder('rating')">
+            <i class="glyphicon" ng-class="{'glyphicon-arrow-up': query.sort == '-rating', 'glyphicon-arrow-down': query.sort == 'rating'}"></i>Booking rating
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="setOrder('status')">
+            <i class="glyphicon" ng-class="{'glyphicon-arrow-up': query.sort == '-status', 'glyphicon-arrow-down': query.sort == 'status'}"></i>Status
+          </a>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="book in books" ng-click="viewBook(book)" class="row-poiner" ng-class="{'active': !book.status}">
+      <th>{{book.bookId}}</th>
+      <td>{{book.author}}</td>
+      <td>{{book.title}}</td>
+      <td>
+        <input-stars max="5" ng-model="book.rating" readonly="readonly"></input-stars>
+      </td>
+      <td><switcher ng-model="book.status" ng-change="changeStatus(newValue, book)"></switcher></td>
+      <td>
+        <a title="Edit" ui-sref="clear.updateBook({id: book._id})"><i class="glyphicon glyphicon-pencil"></i></a>
+        <a title="Remove" href="" ng-click="remove(book)"><i class="glyphicon glyphicon-remove"></i></a>
+      </td>
+    </tr>
+    <tr ng-if="pagination.totalItems === 0">
+      <td colspan="7">
+        No items
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ul uib-pagination total-items="pagination.totalItems" items-per-page="pagination.limit" ng-model="pagination.current" ng-change="loadBooks()"></ul>
+
+  <div class="preview-book" ng-if="previewBook !== null">
+    <table>
+      <tr>
+        <td width="35%">
+          <img ng-if="previewBook.image" style="max-width: 100%" ng-src="{{api.host + '/'+ previewBook.image}}">
+        </td>
+        <td width="65%">
+          <h2>{{previewBook.author}} - {{previewBook.title}}</h2>
+          <p><input-stars max="5" ng-model="previewBook.rating" readonly="readonly"></input-stars></p>
+          <p>{{previewBook.created | date : "dd, MMM yyyy"}}</p>
+          <p>{{previewBook.description}}</p>
+          <p ng-if="previewBook.file">
+            <a target="_self" class="btn btn-default" ng-href="{{api.host + '/' + previewBook.file}}">Download</a>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

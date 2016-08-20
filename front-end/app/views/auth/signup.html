@@ -1,0 +1,25 @@
+<div>
+  <form name="loginForm" novalidate ng-submit="signUp()">
+    <form-errors errors="formErrors"></form-errors>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="signUpModel.email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="signUpModel.password">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword2">Confirm Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" ng-model="signUpModel.confirmPassword">
+    </div>
+    <div>
+      <div class="pull-left">
+        <a ui-sref="clear.login">Login</a>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+{
+  "name": "books",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.5.8",
+    "jquery": "1.9.1 - 3",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.4.0",
+    "angular-cookies": "^1.4.0",
+    "angular-resource": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-sanitize": "^1.4.0",
+    "angular-touch": "^1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-input-stars-directive": "angular-input-stars#~1.6.1",
+    "components-font-awesome": "~4.6.3",
+    "angular-bootstrap": "~2.0.2",
+    "angular-switcher": "~0.2.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "booksApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "1.5.8",
+    "jquery": "3.1.0"
+  }
+}
